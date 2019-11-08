@@ -11,8 +11,7 @@ class CountryUseCase @Inject constructor(
 
     fun getCountriesDataState(): Observable<CountryDataState> {
         // TODO: Should not be getting from api but from a concat instead
-        return repository.getCountriesFromApi()
-            .toObservable()
+        return repository.getCountries()
             .map<CountryDataState> { list ->
                 CountryDataState.Success(list)
             }

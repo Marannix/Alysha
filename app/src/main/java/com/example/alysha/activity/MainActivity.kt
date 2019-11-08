@@ -12,6 +12,7 @@ import com.example.alysha.viewstate.CountryViewState
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
@@ -32,7 +33,10 @@ class MainActivity : BaseActivity() {
         viewModel.state.observe(this, Observer {viewstate ->
             when (viewstate) {
                 CountryViewState.Loading -> Log.d("loading???", "Shouldn't work")
-                is CountryViewState.ShowCountries -> Log.d("success???" , viewstate.countryModel[0].name)
+                is CountryViewState.ShowCountries -> {
+                    Log.d("success???" , viewstate.countryModel[0].name)
+                    testString.text = viewstate.countryModel[0].name
+                }
                 is CountryViewState.ShowError ->Log.d("fail???" , viewstate.errorMessage.toString())
             }
         })
