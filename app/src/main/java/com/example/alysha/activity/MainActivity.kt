@@ -1,17 +1,19 @@
 package com.example.alysha.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.alysha.ApiService
+import com.example.alysha.CountryApi
 import com.example.alysha.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
-    private val apiService = object : ApiService {}
+    @Inject
+    lateinit var countryApi: CountryApi
+
     private val disposables = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +21,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         disposables.add(
-            apiService.countryApi().getCountries()
+            countryApi.getCountries()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

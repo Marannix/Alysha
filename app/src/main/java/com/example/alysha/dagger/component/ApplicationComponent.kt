@@ -3,6 +3,7 @@ package com.example.alysha.dagger.component
 import android.app.Application
 import com.example.alysha.MainApplication
 import com.example.alysha.dagger.modules.ActivityBuilder
+import com.example.alysha.dagger.modules.ApiModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -12,6 +13,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [ActivityBuilder::class,
+        ApiModule::class,
         AndroidSupportInjectionModule::class]
 )
 interface ApplicationComponent : AndroidInjector<MainApplication> {
