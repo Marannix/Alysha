@@ -1,13 +1,15 @@
-package com.example.alysha
+package com.example.alysha.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.alysha.ApiService
+import com.example.alysha.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private val apiService = object : ApiService {}
     private val disposables = CompositeDisposable()
