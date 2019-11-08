@@ -5,6 +5,7 @@ import com.example.alysha.MainApplication
 import com.example.alysha.dagger.modules.ActivityBuilder
 import com.example.alysha.dagger.modules.ApiModule
 import com.example.alysha.dagger.modules.RoomModule
+import com.example.alysha.dagger.modules.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -16,6 +17,7 @@ import javax.inject.Singleton
     modules = [ActivityBuilder::class,
         ApiModule::class,
         RoomModule::class,
+        ViewModelModule::class,
         AndroidSupportInjectionModule::class]
 )
 interface ApplicationComponent : AndroidInjector<MainApplication> {
