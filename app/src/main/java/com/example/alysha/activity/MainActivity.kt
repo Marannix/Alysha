@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.alysha.CountryApi
 import com.example.alysha.R
 import com.example.alysha.viewmodel.CountryViewModel
+import com.example.alysha.viewstate.CountryViewState
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -27,10 +28,13 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewModel.getCountries()
-//        viewModel.initViewModel()
-//        viewModel.stuff()
-        viewModel.getCountries().observe(this, Observer {
-            Log.d("success???" , it[0].name)
+
+        viewModel.state.observe(this, Observer {viewstate ->
+            when (viewstate) {
+                CountryViewState.Loading -> Log.d("loading???", "Shouldn't work")
+                is CountryViewState.ShowCountries -> Log.d("success???" , viewstate.countryModel[0].name)
+                is CountryViewState.ShowError ->Log.d("fail???" , viewstate.errorMessage.toString())
+            }
         })
 
     }
