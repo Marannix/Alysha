@@ -1,3 +1,11 @@
 package com.example.alysha
 
-data class CountryModel(val name: String)
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "countries")
+data class CountryModel(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
+    val name: String
+)
